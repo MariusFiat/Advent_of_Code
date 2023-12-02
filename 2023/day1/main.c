@@ -118,8 +118,9 @@ void prelucrareDate3(char* File){
 
     char line[200], ch;
     int cntLinii = 0, digit1 = 0, digit2 = 0, sum = 0, digit1Litere = 0, digit2Litere = 0;
-    int secondSpot = 0, firstSpot = 0;
+    int secondSpot = 0, firstSpot = 0, lastFirstSpot = 0, lastSecondSpot = 0;
     bool ok = false, okdigit = false;
+    char numere[9][10] = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
     
 
     while(fgets(line, 200, f) != NULL){
@@ -134,8 +135,31 @@ void prelucrareDate3(char* File){
         //printf("digit1Litere %d digit2Litere %d firstSpot %d secondspot %d\t", digit1Litere, digit2Litere, firstSpot, secondSpot);
         if(digit1Litere != -1){
             ok = true;
+            lastFirstSpot = firstSpot;
+            while(true){
+                if(strstr(line + lastFirstSpot, numere[digit1Litere-1]) != NULL)
+                {
+                    lastFirstSpot = line - strstr(line + lastFirstSpot, numere[digit1Litere - 1]);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            while(true){
+                if(strstr(line + lastSecondSpot, numere[digit2Litere - 1]) != NULL)
+                {
+                    lastSecondSpot = line - strstr(line + lastSecondSpot, numere[digit2Litere - 1]);
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
 
+        printf("%d %d\n", lastFirstSpot, lastSecondSpot);
         for(int i = 0; i < strlen(line); i++){
             if(isdigit(line[i]))
             {
