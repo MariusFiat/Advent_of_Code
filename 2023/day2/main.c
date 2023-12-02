@@ -8,9 +8,10 @@
 
 //Deci in fisierul de date, elfu baga mana si scoate niste cuburi, fiecare runda e separata de ;, intr-un joc poate baga [..]
 //[..] mana de mai multe ori;
-int prelucrareDate(char* line, int* respecta){ //? Parametrul respecta va fi setat 1 daca respecta valorile cerute cuburile si pe 0 daca nu;
+int prelucrareDate(char* line, int* respecta, int *sum){ //? Parametrul respecta va fi setat 1 daca respecta valorile cerute cuburile si pe 0 daca nu;
     char *p = NULL, line2[100],*p2 = NULL;
     int sumRed = 0, sumGreen = 0, sumBlue = 0, gameIndex = 0, valoare = 0;
+    int maxSumRed = 0, maxSumGreen = 0, maxSumBlue = 0;
     char *l1 = line, *l2 = NULL;
 
     p = strtok_r(line, " ", &l1); //Aici elimin cuvantul Game;
@@ -20,7 +21,7 @@ int prelucrareDate(char* line, int* respecta){ //? Parametrul respecta va fi set
     //? Acum trebuie sa stai cat timp am capuri, inca nu stiu exact cate am;
     p = strtok_r(NULL, ";", &l1); //? p taie fiecare secventa in care elful baga mana;
     while(p){
-        sumRed = 0; sumGreen = 0; sumBlue = 0; //La fiecare secventa, le setez la 0;
+        sumRed = 0; sumGreen = 0; sumBlue = 0; //La fiecare secventa, le setez la fiecare secventa;
 
         strncpy(line2, p, 99);
         line2[strlen(line2)] = ','; //? Adaug virgula la finalul fiecarei secvente in care baga mana pentru a facilita taierea;
@@ -45,19 +46,32 @@ int prelucrareDate(char* line, int* respecta){ //? Parametrul respecta va fi set
             p2 = strtok_r(NULL, ",", &l2);
         }
 
-        if(sumRed > RED || sumGreen > GREEN || sumBlue > BLUE){
-            *respecta = 0;
-            return -1;
+        if(sumRed > maxSumRed){
+            maxSumRed = sumRed;
+        }
+        if(sumGreen > maxSumGreen){
+            maxSumGreen = sumGreen;
+        }
+        if(sumBlue > maxSumBlue){
+            maxSumBlue = sumBlue;
         }
         p = strtok_r(NULL, ";", &l1);
     }
 
+    //printf("%D %D %D\n", maxSumRed, maxSumGreen, maxSumBlue);
+    *sum = maxSumBlue * maxSumGreen * maxSumRed;
+
+    if(maxSumRed > RED || maxSumGreen > GREEN || maxSumBlue > BLUE){
+        *respecta = 0;
+        return -1;
+    }
+    
     *respecta = 1;
     return gameIndex;
 }
 
 void citireDate(char* File){
-    int sumIndex = 0, currentIndex = 0;
+    int sumIndex = 0, currentIndex = 0, sum = 0, total = 0;
 
     FILE* f = fopen(File, "r");
     if(!f){
@@ -71,7 +85,9 @@ void citireDate(char* File){
         respecta = 0;
         line[strlen(line) - 1] = ';';
 
-        currentIndex = prelucrareDate(line, &respecta);
+        sum = 0;
+        currentIndex = prelucrareDate(line, &respecta, &sum);
+        total += sum;
 
         if(respecta == 1){
             sumIndex += currentIndex;
@@ -83,6 +99,7 @@ void citireDate(char* File){
         exit(-1);
     }
     printf("Sum of games index is -> %d\n", sumIndex);
+    printf("Totalul minim putere cuburi = %D\n", total);
 }
 
 int main(int argc, char* argv[]){
