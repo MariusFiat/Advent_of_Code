@@ -1,0 +1,14 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     prog.p
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _printLinii, symObjAddr: 0x0, symBinAddr: 0x1000031F0, symSize: 0x74 }
+  - { offsetInCU: 0x4C, offset: 0x4C, size: 0x8, addend: 0x0, symName: _printLinii, symObjAddr: 0x0, symBinAddr: 0x1000031F0, symSize: 0x74 }
+  - { offsetInCU: 0x9A, offset: 0x9A, size: 0x8, addend: 0x0, symName: _cautaInStanga, symObjAddr: 0x74, symBinAddr: 0x100003264, symSize: 0xD0 }
+  - { offsetInCU: 0xDE, offset: 0xDE, size: 0x8, addend: 0x0, symName: _cautaSimbol, symObjAddr: 0x144, symBinAddr: 0x100003334, symSize: 0x670 }
+  - { offsetInCU: 0x22C, offset: 0x22C, size: 0x8, addend: 0x0, symName: _numarCifre, symObjAddr: 0x7B4, symBinAddr: 0x1000039A4, symSize: 0x50 }
+  - { offsetInCU: 0x262, offset: 0x262, size: 0x8, addend: 0x0, symName: _suprascriereDigiti, symObjAddr: 0x804, symBinAddr: 0x1000039F4, symSize: 0x74 }
+  - { offsetInCU: 0x2CC, offset: 0x2CC, size: 0x8, addend: 0x0, symName: _realizareSuma, symObjAddr: 0x878, symBinAddr: 0x100003A68, symSize: 0x140 }
+  - { offsetInCU: 0x372, offset: 0x372, size: 0x8, addend: 0x0, symName: _citireDate, symObjAddr: 0x9B8, symBinAddr: 0x100003BA8, symSize: 0x224 }
+  - { offsetInCU: 0x3E2, offset: 0x3E2, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0xBDC, symBinAddr: 0x100003DCC, symSize: 0x68 }
+...
