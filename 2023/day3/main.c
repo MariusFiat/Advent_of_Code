@@ -249,3 +249,6 @@ struct{
     matricea asta are ca si valori 1 si acolo unde am o stea care atinge un numar, valoare campului valoare se face numaru * valoare existenta, cand gasesc deja al [..]
     [..] doilea numar care atinge steaua, sot devine true si valoare *= numar care atinge;
 */
+
+
+//Am facut ceva de genul dar nu cu sot, mi-am dat seama ca pot avea 4 numere la o stea adica 2 grupari;
