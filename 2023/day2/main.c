@@ -18,7 +18,7 @@ int prelucrareDate(char* line, int* respecta, int *sum){ //? Parametrul respecta
     p = strtok_r(NULL, ":", &l1); //Aici scot indexul jocului;
     gameIndex = atoi(p);
 
-    //? Acum trebuie sa stai cat timp am capuri, inca nu stiu exact cate am;
+    //? Acum trebuie sa stai cat timp am campuri, inca nu stiu exact cate am;
     p = strtok_r(NULL, ";", &l1); //? p taie fiecare secventa in care elful baga mana;
     while(p){
         sumRed = 0; sumGreen = 0; sumBlue = 0; //La fiecare secventa, le setez la fiecare secventa;
