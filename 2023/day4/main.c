@@ -99,16 +99,13 @@ int prelucrareLinie(char* line, int* arrayCarduri, int* numarCarduri){
 
 void apelareRecursivaPeArrayCarduri(const int* array, int *array2, int cardCurent){
     if(array[cardCurent] == 0){
-        array2[cardCurent] += array[cardCurent];
+        array2[cardCurent]++;
     }
     else
     {
-        printf("id card %d\n", cardCurent + 1);
-
         array2[cardCurent]++;
-        for(int i = cardCurent + 1; i <= cardCurent + array[cardCurent]; i++){
-            array2[i]+= array[i];
-           apelareRecursivaPeArrayCarduri(array, array2,i);
+        for(int i = cardCurent + 1; i <cardCurent + array[cardCurent] + 1; i++){
+            apelareRecursivaPeArrayCarduri(array, array2, i);
         }
     }
 }
@@ -136,11 +133,14 @@ void citireDate(char* File){
         sumaPuncte += prelucrareLinie(line, arrayCarduri, &numarCarduri);
     }
 
-    printf("Sirul cardurilor este -> "); afisareSir(arrayCarduri, numarCarduri); printf("\n");
+    //printf("Sirul cardurilor este -> "); afisareSir(arrayCarduri, numarCarduri); printf("\n");
     int numarCarduriNoi = 0;
     int* arrayNouAparitii = malloc(sizeof(int) * numarCarduri);
 
-    apelareRecursivaPeArrayCarduri(arrayCarduri, arrayNouAparitii, 0);
+    for(int i = 0; i < numarCarduri; i++){
+        apelareRecursivaPeArrayCarduri(arrayCarduri, arrayNouAparitii, i);
+    }
+    //printf("Sirul carduriloNoi este -> "); afisareSir(arrayNouAparitii, numarCarduri); printf("\n");
 
     for(int i = 0; i < numarCarduri; i++){
         numarCarduriNoi += arrayNouAparitii[i];
