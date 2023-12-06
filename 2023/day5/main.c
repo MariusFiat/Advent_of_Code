@@ -32,12 +32,11 @@ unsigned long long int calculMin(const unsigned long long int array[], const int
             min = array[i];
         }
     }
-
-    printf("Minimul este -> %llu\n", min);
+    //printf("Minimul este -> %llu\n", min);
     return min;
 }
 
-void scoatereMapare(char* line, unsigned long long int* dest, unsigned long long int* src, unsigned long long int* range){
+void scoatereMapare(char* line, unsigned long int* dest, unsigned long int* src, unsigned long int* range){
     char* p = NULL;
     if(line != NULL){
         *dest = atol(line);
@@ -56,29 +55,23 @@ int* resetareArrayConversie(int* array, const int size){
     return array;
 }
 
-unsigned long long int citireDate(char* File);
-
-void cautareSeeds(char* File, int* contor){
+void citireDate(char* File){
     FILE* f = fopen(File, "r");
     if(!f){
-        fprintf(stderr, "Eroare la deschiderea fisierului2\n");
+        fprintf(stderr, "Eroare la deschiderea fisierului sursa!\n");
         exit(-1);
     }
 
     char line[500];
     char* p = NULL;
-    unsigned long long int valueStart, range2;
-    unsigned long long int* arraySeeds = NULL;
+    unsigned long long int* arraySeeds = NULL, *arraySeeds2 = NULL;
+    int* arrayDaConversie = NULL;
     int contorSeeds = 0;
-<<<<<<< HEAD
-    unsigned long int valueStart;
-    unsigned long int range2;
+    int contor2 = 0;
+    int contor = 0;
+    unsigned long long int value;
     unsigned long long int minim;
 
-=======
-    unsigned long long int val, min;
-    
->>>>>>> refs/remotes/origin/main
     if(fgets(line, 500, f) == NULL){
         fprintf(stderr, "Date incorecte!\n");
         exit(-1);
@@ -100,131 +93,93 @@ void cautareSeeds(char* File, int* contor){
         range2 = atol(p); //Salvez range seed
         
         for(unsigned long int i = valueStart + 1; i < valueStart + range2; i++){ //Adaug seeds de la valueStart pana la valueStart + range2 - 1;
-            arraySeeds = realloc(arraySeeds, (contorSeeds + 1) * sizeof(unsigned long long int));
-            if(!arraySeeds){
-                fprintf(stderr, "Eroare la alocarea memoriei pentru seeds!\n");
-                exit(-1);
-            }
+            arraySeeds = realloc(arraySeeds, (contorSeeds + 1) * sizeof(unsigned long int));
             arraySeeds[contorSeeds++] = i;
         }
-<<<<<<< HEAD
         */
-=======
-        
-        val = citireDate(File);
-        if(val < min){
-            min = val;
-        }
-
-        free(arraySeeds);
->>>>>>> refs/remotes/origin/main
         p = strtok(NULL, " ");
-        printf("Da\n");
     }
 
-    if(fclose(f) != 0){
-        fprintf(stderr, "Eroare la inchiderea fisierului2\n");
-        exit(-1);
-    }
-    printf("Valoarea minima este -> %llu\n", min);
-}
+    //printf("Numarul de valori seeds este -> %d\n", contorSeeds);
+    //Aici o sa vreau sa fac o bucla in care sa calculez fiecare set de seeds;
+    while(contor2 < contorSeeds)
+    {
+        //printf("Da\n");
+        contor = arraySeeds[contor2 + 1];
+        arraySeeds2 = realloc(arraySeeds2, contor * sizeof(unsigned long long int));
+        arrayDaConversie = calloc(sizeof(int), contor * sizeof(int));
 
-unsigned long long int citireDate(char* File){
-    FILE* f = fopen(File, "r");
-    if(!f){
-        fprintf(stderr, "Eroare la deschiderea fisierului sursa!\n");
-        exit(-1);
-    }
-
-    char line[500];
-    char* p = NULL;
-    unsigned long long int* arraySeeds = NULL;
-    int* arrayDaConversie = NULL;
-    int contorSeeds = 0;
-    unsigned long int valueStart;
-    unsigned long int range2;
-
-    if(fgets(line, 500, f) == NULL){
-        fprintf(stderr, "Date incorecte!\n");
-        exit(-1);
-    }
-    /*
-    p = strtok(line, " "); //Elimin cuvantul seeds din prima linie;
-    p = strtok(NULL, " ");
-    */
-    /*
-    while(p){
-        arraySeeds = realloc(arraySeeds, (contorSeeds + 1) * sizeof(unsigned long long int));
-        if(!arraySeeds){
-            fprintf(stderr, "Eroare la alocarea memoriei pentru seeds!\n");
+        if(!arraySeeds2){
+            fprintf(stderr, "Memorie insuficienta arrayseeds2!\n");
             exit(-1);
         }
-        arraySeeds[contorSeeds++] = atol(p);
-        valueStart = atol(p); //Salvez valoare de start seed
 
-        p = strtok(NULL, " ");
-        range2 = atol(p); //Salvez range seed
-        
-        for(unsigned long int i = valueStart + 1; i < valueStart + range2; i++){ //Adaug seeds de la valueStart pana la valueStart + range2 - 1;
-            
+        if(!arrayDaConversie){
+            fprintf(stderr, "Memorie insuficienta arrayDaConversie!\n");
+            exit(-1);
         }
-        p = strtok(NULL, " ");
-        printf("Da\n");
-    }
 
-    //Aici o sa vreau sa fac o bucla in care sa calculez fiecare set de seeds;
-    arrayDaConversie = calloc(sizeof(int), contorSeeds * sizeof(int));
-<<<<<<< HEAD
-    printArray(arraySeeds, contorSeeds);
-=======
-    //printArray(arraySeeds, contorSeeds);
-    */
->>>>>>> refs/remotes/origin/main
-
-    unsigned long long int dest, src, range, val;
-
-    while(fgets(line, 500, f) != NULL){
-        if(strlen(line) < 3){
-            //printArray(arraySeeds, contorSeeds);
-            //printf("\n");
-            continue;
+        for(int i = 0; i < contor; i++){
+            *(arraySeeds2 + i) = i + arraySeeds[contor2];
         }
-        else if(isdigit(line[0]) == 0){
-            //arrayDaConversie = resetareArrayConversie(arrayDaConversie, contorSeeds);
-            //printArray(arrayDaConversie, contorSeeds);
-            continue;
-        }
-        else{
-            scoatereMapare(line, &dest, &src, &range);
-            //printf("%llu %llu %llu\n", dest, src, range);
-            
-            for(int i = 0; i < contorSeeds; i++){
-                val = arraySeeds[i];
-                if(arrayDaConversie[i] == 0){
-                    arraySeeds[i] = convertor(dest, src, range, arraySeeds[i]);
-                    if(arraySeeds[i] != val){
-                        arrayDaConversie[i] = 1;
+
+        //printArray(arraySeeds2, contor);
+        unsigned long int dest, src, range, val;
+
+        fseek(f, 0, SEEK_SET);
+        while(fgets(line, 500, f) != NULL){
+            if(strlen(line) < 3){
+                //printArray(arraySeeds, contorSeeds);
+                //printf("\n");
+                continue;
+            }
+            else if(isdigit(line[0]) == 0){
+                arrayDaConversie = resetareArrayConversie(arrayDaConversie, contor);
+                //printArray(arrayDaConversie, contorSeeds);
+                continue;
+            }
+            else{
+                scoatereMapare(line, &dest, &src, &range);
+                //printf("%lu %lu %lu\n", dest, src, range);
+                
+                for(int i = 0; i < contor; i++){
+                    val = arraySeeds2[i];
+                    if(arrayDaConversie[i] == 0){
+                        arraySeeds2[i] = convertor(dest, src, range, arraySeeds2[i]);
+                        if(arraySeeds2[i] != val){
+                            arrayDaConversie[i] = 1;
+                        }
                     }
                 }
+                
             }
+            
+            value = calculMin(arraySeeds2, contor);
+            if(value < minim){
+                minim = value;
+            }
+
+            if(contor2 == 0){
+                minim = value;
+            }
+
+            //free(arrayDaConversie);
+            //free(arraySeeds2);
         }
+        contor2 += 2;
     }
     //printArray(arraySeeds, contorSeeds);
-<<<<<<< HEAD
-    minim = calculMin(arraySeeds, contorSeeds);
     free(arrayDaConversie);
     free(arraySeeds);
-=======
-    unsigned long long int  min = calculMin(arraySeeds, contorSeeds);
->>>>>>> refs/remotes/origin/main
+    free(arraySeeds2);
+
     //printf("Convertor dest 49 src 53 range 8 -> %ld\n", convertor(49, 53, 8, 53));
+    printf("Pozitia minima este -> %llu\n", minim);
 
     if(fclose(f) != 0){
         fprintf(stderr, "Eroare la inchiderea fisierului!\n");
         exit(-1);
     }
-    free(arrayDaConversie);
-    free(arraySeeds);
 }
 
 int main(int argc, char* argv[]){
