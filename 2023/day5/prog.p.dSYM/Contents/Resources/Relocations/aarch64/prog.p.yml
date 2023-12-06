@@ -1,0 +1,13 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     prog.p
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _printArray, symObjAddr: 0x0, symBinAddr: 0x1000036A0, symSize: 0x80 }
+  - { offsetInCU: 0x42, offset: 0x42, size: 0x8, addend: 0x0, symName: _printArray, symObjAddr: 0x0, symBinAddr: 0x1000036A0, symSize: 0x80 }
+  - { offsetInCU: 0x90, offset: 0x90, size: 0x8, addend: 0x0, symName: _convertor, symObjAddr: 0x80, symBinAddr: 0x100003720, symSize: 0xB4 }
+  - { offsetInCU: 0xF0, offset: 0xF0, size: 0x8, addend: 0x0, symName: _calculMin, symObjAddr: 0x134, symBinAddr: 0x1000037D4, symSize: 0xB0 }
+  - { offsetInCU: 0x14C, offset: 0x14C, size: 0x8, addend: 0x0, symName: _scoatereMapare, symObjAddr: 0x1E4, symBinAddr: 0x100003884, symSize: 0xB8 }
+  - { offsetInCU: 0x1A8, offset: 0x1A8, size: 0x8, addend: 0x0, symName: _resetareArrayConversie, symObjAddr: 0x29C, symBinAddr: 0x10000393C, symSize: 0x5C }
+  - { offsetInCU: 0x1FA, offset: 0x1FA, size: 0x8, addend: 0x0, symName: _citireDate, symObjAddr: 0x2F8, symBinAddr: 0x100003998, symSize: 0x418 }
+  - { offsetInCU: 0x2FF, offset: 0x2FF, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x710, symBinAddr: 0x100003DB0, symSize: 0x68 }
+...
