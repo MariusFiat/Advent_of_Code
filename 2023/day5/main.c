@@ -25,7 +25,7 @@ unsigned long long int convertor(const unsigned long long int dest, const unsign
     return newValue;
 }
 
-void calculMin(const unsigned long long int array[], const int size){
+unsigned long long int calculMin(const unsigned long long int array[], const int size){
     unsigned long long int min = array[0];
     for(int i = 1; i < size; i++){
         if(array[i] < min){
@@ -34,9 +34,10 @@ void calculMin(const unsigned long long int array[], const int size){
     }
 
     printf("Minimul este -> %llu\n", min);
+    return min;
 }
 
-void scoatereMapare(char* line, unsigned long int* dest, unsigned long int* src, unsigned long int* range){
+void scoatereMapare(char* line, unsigned long long int* dest, unsigned long long int* src, unsigned long long int* range){
     char* p = NULL;
     if(line != NULL){
         *dest = atol(line);
@@ -55,21 +56,22 @@ int* resetareArrayConversie(int* array, const int size){
     return array;
 }
 
-void citireDate(char* File){
+unsigned long long int citireDate(char* File);
+
+void cautareSeeds(char* File, int* contor){
     FILE* f = fopen(File, "r");
     if(!f){
-        fprintf(stderr, "Eroare la deschiderea fisierului sursa!\n");
+        fprintf(stderr, "Eroare la deschiderea fisierului2\n");
         exit(-1);
     }
 
     char line[500];
     char* p = NULL;
+    unsigned long long int valueStart, range2;
     unsigned long long int* arraySeeds = NULL;
-    int* arrayDaConversie = NULL;
     int contorSeeds = 0;
-    unsigned long int valueStart;
-    unsigned long int range2;
-
+    unsigned long long int val, min;
+    
     if(fgets(line, 500, f) == NULL){
         fprintf(stderr, "Date incorecte!\n");
         exit(-1);
@@ -89,16 +91,78 @@ void citireDate(char* File){
         range2 = atol(p); //Salvez range seed
         
         for(unsigned long int i = valueStart + 1; i < valueStart + range2; i++){ //Adaug seeds de la valueStart pana la valueStart + range2 - 1;
-            arraySeeds = realloc(arraySeeds, (contorSeeds + 1) * sizeof(unsigned long int));
+            arraySeeds = realloc(arraySeeds, (contorSeeds + 1) * sizeof(unsigned long long int));
+            if(!arraySeeds){
+                fprintf(stderr, "Eroare la alocarea memoriei pentru seeds!\n");
+                exit(-1);
+            }
             arraySeeds[contorSeeds++] = i;
         }
+        
+        val = citireDate(File);
+        if(val < min){
+            min = val;
+        }
+
+        free(arraySeeds);
         p = strtok(NULL, " ");
+        printf("Da\n");
+    }
+
+    if(fclose(f) != 0){
+        fprintf(stderr, "Eroare la inchiderea fisierului2\n");
+        exit(-1);
+    }
+    printf("Valoarea minima este -> %llu\n", min);
+}
+
+unsigned long long int citireDate(char* File){
+    FILE* f = fopen(File, "r");
+    if(!f){
+        fprintf(stderr, "Eroare la deschiderea fisierului sursa!\n");
+        exit(-1);
+    }
+
+    char line[500];
+    char* p = NULL;
+    unsigned long long int* arraySeeds = NULL;
+    int* arrayDaConversie = NULL;
+    int contorSeeds = 0;
+    unsigned long int valueStart;
+    unsigned long int range2;
+
+    if(fgets(line, 500, f) == NULL){
+        fprintf(stderr, "Date incorecte!\n");
+        exit(-1);
+    }
+    /*
+    p = strtok(line, " "); //Elimin cuvantul seeds din prima linie;
+    p = strtok(NULL, " ");
+    */
+    /*
+    while(p){
+        arraySeeds = realloc(arraySeeds, (contorSeeds + 1) * sizeof(unsigned long long int));
+        if(!arraySeeds){
+            fprintf(stderr, "Eroare la alocarea memoriei pentru seeds!\n");
+            exit(-1);
+        }
+        arraySeeds[contorSeeds++] = atol(p);
+        valueStart = atol(p); //Salvez valoare de start seed
+
+        p = strtok(NULL, " ");
+        range2 = atol(p); //Salvez range seed
+        
+        for(unsigned long int i = valueStart + 1; i < valueStart + range2; i++){ //Adaug seeds de la valueStart pana la valueStart + range2 - 1;
+            
+        }
+        p = strtok(NULL, " ");
+        printf("Da\n");
     }
     arrayDaConversie = calloc(sizeof(int), contorSeeds * sizeof(int));
     //printArray(arraySeeds, contorSeeds);
+    */
 
-    unsigned long int dest, src, range, val;
-
+    unsigned long long int dest, src, range, val;
 
     while(fgets(line, 500, f) != NULL){
         if(strlen(line) < 3){
@@ -107,13 +171,13 @@ void citireDate(char* File){
             continue;
         }
         else if(isdigit(line[0]) == 0){
-            arrayDaConversie = resetareArrayConversie(arrayDaConversie, contorSeeds);
+            //arrayDaConversie = resetareArrayConversie(arrayDaConversie, contorSeeds);
             //printArray(arrayDaConversie, contorSeeds);
             continue;
         }
         else{
             scoatereMapare(line, &dest, &src, &range);
-            //printf("%lu %lu %lu\n", dest, src, range);
+            //printf("%llu %llu %llu\n", dest, src, range);
             
             for(int i = 0; i < contorSeeds; i++){
                 val = arraySeeds[i];
@@ -124,11 +188,10 @@ void citireDate(char* File){
                     }
                 }
             }
-            
         }
     }
     //printArray(arraySeeds, contorSeeds);
-    calculMin(arraySeeds, contorSeeds);
+    unsigned long long int  min = calculMin(arraySeeds, contorSeeds);
     //printf("Convertor dest 49 src 53 range 8 -> %ld\n", convertor(49, 53, 8, 53));
 
     if(fclose(f) != 0){
