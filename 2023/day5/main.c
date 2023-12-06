@@ -4,9 +4,9 @@
 #include <ctype.h>
 #include <math.h>
 
-void printArray(const unsigned long int array[], const int size){
+void printArray(const unsigned long long int array[], const int size){
     for(int i = 0; i < size; i++){
-        printf("%lu ", array[i]);
+        printf("%llu ", array[i]);
     }
     printf("\n");
 }
@@ -25,7 +25,7 @@ unsigned long long int convertor(const unsigned long long int dest, const unsign
     return newValue;
 }
 
-void calculMin(const unsigned long long int array[], const int size){
+unsigned long long int calculMin(const unsigned long long int array[], const int size){
     unsigned long long int min = array[0];
     for(int i = 1; i < size; i++){
         if(array[i] < min){
@@ -34,6 +34,7 @@ void calculMin(const unsigned long long int array[], const int size){
     }
 
     printf("Minimul este -> %llu\n", min);
+    return min;
 }
 
 void scoatereMapare(char* line, unsigned long int* dest, unsigned long int* src, unsigned long int* range){
@@ -69,6 +70,7 @@ void citireDate(char* File){
     int contorSeeds = 0;
     unsigned long int valueStart;
     unsigned long int range2;
+    unsigned long long int minim;
 
     if(fgets(line, 500, f) == NULL){
         fprintf(stderr, "Date incorecte!\n");
@@ -83,6 +85,8 @@ void citireDate(char* File){
             exit(-1);
         }
         arraySeeds[contorSeeds++] = atol(p);
+
+        /*
         valueStart = atol(p); //Salvez valoare de start seed
 
         p = strtok(NULL, " ");
@@ -92,10 +96,13 @@ void citireDate(char* File){
             arraySeeds = realloc(arraySeeds, (contorSeeds + 1) * sizeof(unsigned long int));
             arraySeeds[contorSeeds++] = i;
         }
+        */
         p = strtok(NULL, " ");
     }
+
+    //Aici o sa vreau sa fac o bucla in care sa calculez fiecare set de seeds;
     arrayDaConversie = calloc(sizeof(int), contorSeeds * sizeof(int));
-    //printArray(arraySeeds, contorSeeds);
+    printArray(arraySeeds, contorSeeds);
 
     unsigned long int dest, src, range, val;
 
@@ -128,7 +135,9 @@ void citireDate(char* File){
         }
     }
     //printArray(arraySeeds, contorSeeds);
-    calculMin(arraySeeds, contorSeeds);
+    minim = calculMin(arraySeeds, contorSeeds);
+    free(arrayDaConversie);
+    free(arraySeeds);
     //printf("Convertor dest 49 src 53 range 8 -> %ld\n", convertor(49, 53, 8, 53));
 
     if(fclose(f) != 0){
