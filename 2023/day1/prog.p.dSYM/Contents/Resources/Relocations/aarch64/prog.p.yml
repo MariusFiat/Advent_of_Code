@@ -1,0 +1,10 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     prog.p
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _convertireDigiti, symObjAddr: 0x0, symBinAddr: 0x1000037A0, symSize: 0x398 }
+  - { offsetInCU: 0x42, offset: 0x42, size: 0x8, addend: 0x0, symName: _convertireDigiti, symObjAddr: 0x0, symBinAddr: 0x1000037A0, symSize: 0x398 }
+  - { offsetInCU: 0x94, offset: 0x94, size: 0x8, addend: 0x0, symName: _cautaNumar, symObjAddr: 0x398, symBinAddr: 0x100003B38, symSize: 0x12C }
+  - { offsetInCU: 0x11E, offset: 0x11E, size: 0x8, addend: 0x0, symName: _citireDate, symObjAddr: 0x4C4, symBinAddr: 0x100003C64, symSize: 0x170 }
+  - { offsetInCU: 0x188, offset: 0x188, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x634, symBinAddr: 0x100003DD4, symSize: 0x68 }
+...
