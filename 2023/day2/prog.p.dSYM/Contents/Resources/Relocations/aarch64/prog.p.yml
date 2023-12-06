@@ -1,9 +1,0 @@
----
-triple:          'arm64-apple-darwin'
-binary-path:     prog.p
-relocations:
-  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _prelucrareDate, symObjAddr: 0x0, symBinAddr: 0x1000038A4, symSize: 0x370 }
-  - { offsetInCU: 0x42, offset: 0x42, size: 0x8, addend: 0x0, symName: _prelucrareDate, symObjAddr: 0x0, symBinAddr: 0x1000038A4, symSize: 0x370 }
-  - { offsetInCU: 0x148, offset: 0x148, size: 0x8, addend: 0x0, symName: _citireDate, symObjAddr: 0x370, symBinAddr: 0x100003C14, symSize: 0x1CC }
-  - { offsetInCU: 0x1CF, offset: 0x1CF, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x53C, symBinAddr: 0x100003DE0, symSize: 0x68 }
-...
