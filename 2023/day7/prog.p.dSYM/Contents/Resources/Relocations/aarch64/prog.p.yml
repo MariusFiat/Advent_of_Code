@@ -1,0 +1,19 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     prog.p
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _processingLine, symObjAddr: 0x0, symBinAddr: 0x1000021F4, symSize: 0x80 }
+  - { offsetInCU: 0x42, offset: 0x42, size: 0x8, addend: 0x0, symName: _processingLine, symObjAddr: 0x0, symBinAddr: 0x1000021F4, symSize: 0x80 }
+  - { offsetInCU: 0x87, offset: 0x87, size: 0x8, addend: 0x0, symName: _readData, symObjAddr: 0x80, symBinAddr: 0x100002274, symSize: 0x1B0 }
+  - { offsetInCU: 0xFA, offset: 0xFA, size: 0x8, addend: 0x0, symName: _printCards, symObjAddr: 0x230, symBinAddr: 0x100002424, symSize: 0xD0 }
+  - { offsetInCU: 0x148, offset: 0x148, size: 0x8, addend: 0x0, symName: _printSimbolsArray, symObjAddr: 0x300, symBinAddr: 0x1000024F4, symSize: 0x84 }
+  - { offsetInCU: 0x196, offset: 0x196, size: 0x8, addend: 0x0, symName: _resetSimbolsArray, symObjAddr: 0x384, symBinAddr: 0x100002578, symSize: 0x58 }
+  - { offsetInCU: 0x1E4, offset: 0x1E4, size: 0x8, addend: 0x0, symName: _extractCardType, symObjAddr: 0x3DC, symBinAddr: 0x1000025D0, symSize: 0x558 }
+  - { offsetInCU: 0x2D2, offset: 0x2D2, size: 0x8, addend: 0x0, symName: _compare2CardStringValues, symObjAddr: 0x934, symBinAddr: 0x100002B28, symSize: 0xD4 }
+  - { offsetInCU: 0x326, offset: 0x326, size: 0x8, addend: 0x0, symName: _bubbleSort, symObjAddr: 0xA08, symBinAddr: 0x100002BFC, symSize: 0x11C }
+  - { offsetInCU: 0x387, offset: 0x387, size: 0x8, addend: 0x0, symName: _compare2, symObjAddr: 0xB24, symBinAddr: 0x100002D18, symSize: 0x11C }
+  - { offsetInCU: 0x3DC, offset: 0x3DC, size: 0x8, addend: 0x0, symName: _sortType, symObjAddr: 0xC40, symBinAddr: 0x100002E34, symSize: 0x184 }
+  - { offsetInCU: 0x44A, offset: 0x44A, size: 0x8, addend: 0x0, symName: _extractCardValue, symObjAddr: 0xDC4, symBinAddr: 0x100002FB8, symSize: 0xAC4 }
+  - { offsetInCU: 0x63D, offset: 0x63D, size: 0x8, addend: 0x0, symName: _calculatePoints, symObjAddr: 0x1888, symBinAddr: 0x100003A7C, symSize: 0x21C }
+  - { offsetInCU: 0x6BC, offset: 0x6BC, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x1AA4, symBinAddr: 0x100003C98, symSize: 0xB0 }
+...
