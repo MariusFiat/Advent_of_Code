@@ -5,7 +5,7 @@
 
 #define CARD_LENGTH 5
 #define SIZE_LINE 50
-#define SIMBOLS_NUMBER 15
+#define SYMBOLS_NUMBER 15
 
 typedef struct{
     char cardValueString[CARD_LENGTH];
@@ -74,7 +74,7 @@ void resetSimbolsArray(int array[], const int size){
 }
 
 Card_t* extractCardType(Card_t cards[], const int size){
-    int cardSimbols[SIMBOLS_NUMBER] = {0};
+    int cardSimbols[SYMBOLS_NUMBER] = {0};
     char simbol;
     for(int i = 0; i < size; i++){
         for(int j = 0; j < CARD_LENGTH; j++){
@@ -111,7 +111,7 @@ Card_t* extractCardType(Card_t cards[], const int size){
         int maxValue = 0;
         int secondValue = 0;
         int indexMax, indexSecond;
-        for(int j = 0; j < SIMBOLS_NUMBER; j++){
+        for(int j = 0; j < SYMBOLS_NUMBER; j++){
             if(cardSimbols[j] > maxValue){
                 secondValue = maxValue;
                 indexSecond = indexMax;
@@ -151,7 +151,7 @@ Card_t* extractCardType(Card_t cards[], const int size){
             cards[i].cardType = 1;
         }
         //printSimbolsArray(cardSimbols, SIMBOLS_NUMBER);
-        resetSimbolsArray(cardSimbols, SIMBOLS_NUMBER);
+        resetSimbolsArray(cardSimbols, SYMBOLS_NUMBER);
     }
     //printCards(cards, size);
     return cards;
@@ -175,7 +175,7 @@ Card_t bubbleSort(Card_t card){ //Sortez crescator simbolurile de pe carduri;
     int aux;
     do{
         s = 0;
-        for(int i = 1; i < SIMBOLS_NUMBER; i++){
+        for(int i = 1; i < SYMBOLS_NUMBER; i++){
             if(card.array[i] < card.array[i-1]){
                 aux = card.array[i];
                 card.array[i] = card.array[i - 1];
@@ -193,7 +193,7 @@ int compare2(Card_t card1, Card_t card2){
     card1 = bubbleSort(card1);
     card2 = bubbleSort(card2);
 
-    for(int i = 0; i < SIMBOLS_NUMBER; i++){
+    for(int i = 0; i < SYMBOLS_NUMBER; i++){
         if(card1.array[i] != card2.array[i]){
             return -1;
         }
@@ -371,9 +371,9 @@ Card_t* extractCardValue(Card_t cards[], const int size){
 void calculatePoints(const Card_t cards[], const int size){
     long int points = 0;
     int currentRank = 1;
-    int same = 0;
+    
     for(int i = 0; i < size; i++){
-        printf("%s rank %d type %d indexSame %d  bid %d\n", cards[i].cardValueString, currentRank + same, cards[i].cardType, cards[i].indexSameType, cards[i].cardBid);
+       //printf("%s rank %d type %d indexSame %d  bid %d\n", cards[i].cardValueString, currentRank + same, cards[i].cardType, cards[i].indexSameType, cards[i].cardBid);
         points += currentRank * cards[i].cardBid;
 
         if(i < size - 1)
@@ -384,6 +384,79 @@ void calculatePoints(const Card_t cards[], const int size){
         }
     }
     printf("Total points -> %ld\n", points);
+}
+
+char selectSymbol(const int position){
+    if(position == 2){
+        return '2';
+    }
+    else if(position == 3){
+        return '3';
+    }
+    else if(position == 4){
+        return '4';
+    }
+    else if(position == 5){
+        return '5';
+    }
+    else if(position == 6){
+        return '6';
+    }
+    else if(position == 7){
+        return '7';
+    }
+    else if(position == 8){
+        return '8';
+    }
+    else if(position == 9){
+        return '9';
+    }
+    else if(position == 10){
+        return 'T';
+    }
+    else if(position == 12){
+        return 'Q';
+    }
+    else if(position == 13){
+        return 'K';
+    }
+    else if(position == 14){
+        return 'A';
+    }
+    return '.';
+}
+
+int getGraterSymbol(Card_t card){
+    int i = SYMBOLS_NUMBER - 1;
+    while(i){
+        if(card.array[i] != 0){
+            return i;
+        }
+    }
+    return 0;
+}
+
+int calculateNumberOfJokers(Card_t card);
+
+void convertJoker(Card_t card, const int cardType){
+    int numberOfJokers = calculateNumberOfJokers(card);
+    char ch;
+
+    if(cardType == 1){
+        if(numberOfJokers == 4){
+            ch = selectSymbol(getGraterSymbol(card));
+        }
+    }
+}
+
+int calculateNumberOfJokers(Card_t card){
+    int numberOfJokers = 0;
+    for(int i = 0; i < CARD_LENGTH; i++){
+        if(card.cardValueString[i] == 'J'){
+            numberOfJokers++;
+        }
+    }
+    return numberOfJokers;
 }
 
 int main(int argc, char* argv[]){
@@ -400,6 +473,7 @@ int main(int argc, char* argv[]){
     //printCards(cards, counter);
 
     calculatePoints(cards, counter);
+
 
     free(cards);
     return 0;
