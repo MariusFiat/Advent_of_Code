@@ -56,6 +56,19 @@ int** findNextLines(int** matrix, int size, int* lines){
     return matrix;
 }
 
+int extrapolateBackwards(int** matrix, const int lines, const int columns){
+    int previousValue = 0;
+
+    int currentI = lines - 1;
+    int currentJ = 0;
+
+    while(currentI >= 0){
+        previousValue = matrix[currentI--][currentJ] - previousValue;
+    }
+
+    return previousValue;
+}
+
 int predictLastValue(int** matrix, const int lines, const int columns){
     int lastEmptyJ = columns - (lines - 1) + 1;
     int lastEmptyI = lines - 1;
@@ -106,11 +119,14 @@ int dataProcessing(char* line){
     
     int lastValue = predictLastValue(kindOfMatrix, newLines, sizeData);
     //printf("LAST %d\n", lastValue);
+    int prevValue = extrapolateBackwards(kindOfMatrix, newLines, sizeData);
+    printf("PREV %d\n", prevValue);
 
     //printMatrix(kindOfMatrix, newLines, sizeData);
     freeMatrix(kindOfMatrix, newLines); 
     
-    return lastValue;
+    return prevValue; //Aici modific in functie de partea la care sunt, acum am nevoie doar re previousValues;
+    //[...] la prima parte, aici retunrez lastValue pentru a face suma in urmatoarea functie;
 }
 
 void readData(char* File){
