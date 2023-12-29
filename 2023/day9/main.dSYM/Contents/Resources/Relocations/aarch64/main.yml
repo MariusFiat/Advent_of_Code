@@ -1,0 +1,13 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/mariusfiat/Documents/Advent_of_Code/Advent_of_Code/2023/day9/main'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _printMatrix, symObjAddr: 0x0, symBinAddr: 0x100003878, symSize: 0xC0 }
+  - { offsetInCU: 0x42, offset: 0x42, size: 0x8, addend: 0x0, symName: _printMatrix, symObjAddr: 0x0, symBinAddr: 0x100003878, symSize: 0xC0 }
+  - { offsetInCU: 0xAC, offset: 0xAC, size: 0x8, addend: 0x0, symName: _freeMatrix, symObjAddr: 0xC0, symBinAddr: 0x100003938, symSize: 0x6C }
+  - { offsetInCU: 0xFA, offset: 0xFA, size: 0x8, addend: 0x0, symName: _findNextLines, symObjAddr: 0x12C, symBinAddr: 0x1000039A4, symSize: 0x180 }
+  - { offsetInCU: 0x192, offset: 0x192, size: 0x8, addend: 0x0, symName: _setMatrixToZero, symObjAddr: 0x2AC, symBinAddr: 0x100003B24, symSize: 0x9C }
+  - { offsetInCU: 0x200, offset: 0x200, size: 0x8, addend: 0x0, symName: _dataProcessing, symObjAddr: 0x348, symBinAddr: 0x100003BC0, symSize: 0x114 }
+  - { offsetInCU: 0x26E, offset: 0x26E, size: 0x8, addend: 0x0, symName: _readData, symObjAddr: 0x45C, symBinAddr: 0x100003CD4, symSize: 0x108 }
+  - { offsetInCU: 0x2AE, offset: 0x2AE, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x564, symBinAddr: 0x100003DDC, symSize: 0x68 }
+...

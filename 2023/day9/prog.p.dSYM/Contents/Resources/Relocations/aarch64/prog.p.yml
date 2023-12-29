@@ -1,0 +1,14 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     prog.p
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _printMatrix, symObjAddr: 0x0, symBinAddr: 0x100003638, symSize: 0xD0 }
+  - { offsetInCU: 0x42, offset: 0x42, size: 0x8, addend: 0x0, symName: _printMatrix, symObjAddr: 0x0, symBinAddr: 0x100003638, symSize: 0xD0 }
+  - { offsetInCU: 0xBA, offset: 0xBA, size: 0x8, addend: 0x0, symName: _freeMatrix, symObjAddr: 0xD0, symBinAddr: 0x100003708, symSize: 0x6C }
+  - { offsetInCU: 0x108, offset: 0x108, size: 0x8, addend: 0x0, symName: _findNextLines, symObjAddr: 0x13C, symBinAddr: 0x100003774, symSize: 0x24C }
+  - { offsetInCU: 0x1BC, offset: 0x1BC, size: 0x8, addend: 0x0, symName: _predictLastValue, symObjAddr: 0x388, symBinAddr: 0x1000039C0, symSize: 0x104 }
+  - { offsetInCU: 0x246, offset: 0x246, size: 0x8, addend: 0x0, symName: _setMatrixToZero, symObjAddr: 0x48C, symBinAddr: 0x100003AC4, symSize: 0x9C }
+  - { offsetInCU: 0x2B4, offset: 0x2B4, size: 0x8, addend: 0x0, symName: _dataProcessing, symObjAddr: 0x528, symBinAddr: 0x100003B60, symSize: 0x130 }
+  - { offsetInCU: 0x322, offset: 0x322, size: 0x8, addend: 0x0, symName: _readData, symObjAddr: 0x658, symBinAddr: 0x100003C90, symSize: 0x134 }
+  - { offsetInCU: 0x370, offset: 0x370, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x78C, symBinAddr: 0x100003DC4, symSize: 0x68 }
+...
